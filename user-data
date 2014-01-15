@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e -x
+apt-get update && apt-get upgrade -y
+apt-get install git -y
+git clone https://github.com/stringham/cs462
+chmod a+x cs462/setup
+./script.sh
