@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e -x
-apt-get update && apt-get upgrade -y
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get -o Dpkg::Options::="--force-confnew" --force-yes -fuy dist-upgrade
 apt-get install git -y
-git clone https://github.com/stringham/cs462
+git clone https://github.com/stringham/cs462.git
 chmod a+x cs462/setup
-./script.sh
+./cs462/setup
