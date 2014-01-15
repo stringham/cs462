@@ -4,6 +4,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get -o Dpkg::Options::="--force-confnew" --force-yes -fuy dist-upgrade
 apt-get install git -y
+cd /home/ubuntu
 git clone https://github.com/stringham/cs462.git
 chmod a+x cs462/setup
 ./cs462/setup
