@@ -1,0 +1,12 @@
+@(users: Iterable[controllers.User], activeUser:Option[User], connected:Boolean)
+
+@main("CS 462", activeUser.isDefined, connected) {
+
+
+
+        <h1>Users:</h1>
+    @for(auser <- users){
+         @user(auser)
+    }
+
+}

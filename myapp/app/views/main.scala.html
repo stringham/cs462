@@ -1,0 +1,43 @@
+@(title: String, loggedIn:Boolean, connected:Boolean)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+    </head>
+    <body>
+         <div class="navbar navbar-default" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/">CS 462</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                @if(loggedIn){
+                <ul class="nav navbar-nav">
+                    @if(connected){
+                    <li><a href="/view">View</a></li>
+                    }else{
+                <li><a href="/connect">Connect to foursquare</a></li>
+                    }
+                </ul>
+                }
+              <ul class="nav navbar-nav navbar-right">
+                @if(loggedIn){
+                <li><a href="/logout">Log out</a></li>
+                }else{
+                <li><a href="/createuser">Create User</a></li>
+                <li><a href="/login">Sign in</a></li>
+                }
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+        <div class="container">
+            @content
+        </div>
+    </body>
+</html>

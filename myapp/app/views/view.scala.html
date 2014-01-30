@@ -1,0 +1,24 @@
+@(user:User, content:String, loggedIn:Boolean=true, connected:Boolean=true)
+
+@main("CS 462", loggedIn, connected) {
+    <script>
+        var checkinResponse = @Html(content);
+        $(document).ready(function(){
+            function createCheckin(checkin){
+                var container = $('<div>').addClass('container').addClass('checkin');
+                container.append($('<h2>').text(checkin.venue.name));
+                var date = new Date();
+                date.setTime(checkin.createdAt*1000);
+                var checkedInAt = date.toDateString() + ' at ' + date.toLocaleTimeString();
+                container.append($('<p>Located at: '+(checkin.venue.location.address || '')+', ' + (checkin.venue.location.city || '') +' ' + (checkin.venue.location.state || '') + ', ' + (checkin.venue.location.postalCode || '') + '</p>'));
+                container.append($('<p>Checked in: '+checkedInAt+'</p>'));
+                return container;
+            }
+            var checkinContainer = $('.checkin-container');
+            checkinResponse.response.checkins.items.forEach(function(checkin){$(checkinContainer).append(createCheckin(checkin));})
+        });
+    </script>
+    <h1>Checkin History for @user.username:</h1>
+    <div class="container checkin-container"></div>
+
+}
