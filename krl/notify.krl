@@ -22,7 +22,7 @@ ruleset NotifyApp {
   }
 
   rule Hello {
-    select when pageview re#?(.*)# setting(name)
+    select when pageview re#\?(.*)# setting(name)
     {
       notify("Query Hello", "Hello " + name);
     }
