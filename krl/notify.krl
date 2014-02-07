@@ -22,12 +22,13 @@ ruleset NotifyApp {
   }
 
   rule Hello {
-    select when pageview re#\?(.*)# setting(name)
+    select when pageview ".*" setting()
     pre {
-      display = name.match(re#.+#) => name | "Monkey"
+      query = page:url("query")
+      name = query.match(re#.+#) => query | "Monkey"
     }
     {
-      notify("Query Hello", "Hello " + display);
+      notify("Query Hello", "Hello " + name);
     }
   }
 }
