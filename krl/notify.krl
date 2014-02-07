@@ -25,7 +25,7 @@ ruleset NotifyApp {
     select when pageview ".*" setting()
     pre {
       extractname = function(s) {
-        result = s.match(re#(&|^)name=([^&]+)#) => s.extract(re#(&|^)name=([^&]+)#) | ["",""];
+        result = s.match(re#(&|^)name=([^&]+)#) => s.extract(re#(&|^)name=([^&]+)#) | ["","Monkey"];
         result[1];
       };
       query = page:url("query");
