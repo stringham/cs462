@@ -23,6 +23,9 @@ ruleset NotifyApp {
 
   rule Hello {
     select when pageview re#\?(.*)# setting(name)
+    pre {
+      display = name.match(re#.+#) => name | "Monkey"
+    }
     {
       notify("Query Hello", "Hello " + name);
     }
