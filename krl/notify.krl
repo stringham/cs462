@@ -16,7 +16,7 @@ ruleset NotifyApp {
     pre {
     }
     {
-      notify("Hello world", "This is an example rule.")
+      notify("Hello world", "This is an example rule.");
       notify("My second notification", "This is my sticky notifier.") with sticky = true;
     }
   }
