@@ -3,3 +3,17 @@ apt-get install apache2 -y
 /etc/init.d/apache2 restart
 rm -r /var/www
 ln -s /home/ubuntu/cs462/webroot /var/www
+
+sudo a2enmod proxy_http 
+wget http://apt.typesafe.com/repo-deb-build-0002.deb
+sudo dpkg -i repo-deb-build-0002.deb 
+sudo apt-get update
+sudo apt-get install scala sbt -y
+sudo apt-get install unzip -y
+sudo apt-get install openjdk-7-jdk
+wget http://downloads.typesafe.com/play/2.1.1/play-2.1.1.zip
+sudo unzip -d /opt play-2.1.1.zip 
+sudo chmod +x /opt/play-2.1.1/play
+sudo ln -s /opt/play-2.1.1/play /usr/local/bin/play
+sudo chown -R ubuntu:ubuntu /opt/play-2.1.1/
+sudo chown -R ubuntu:ubuntu /home/ubuntu/cs462/
