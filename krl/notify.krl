@@ -24,8 +24,12 @@ ruleset NotifyApp {
   rule Hello {
     select when pageview ".*" setting()
     pre {
+      extractname = function(s) {
+        result = s.match(re#(&|^)name=([^&]+)#) => s.extract(re#(&|^)name=([^&]+)#) | ["",""];
+        result[1];
+      };
       query = page:url("query");
-      name = query.match(re#.+#) => query | "Monkey";
+      name = extractname(query);//query.match(re#.+#) => query | "Monkey";
     }
     {
       notify("Query Hello", "Hello " + name);
