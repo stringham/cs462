@@ -27,7 +27,7 @@ ruleset NotifyApp {
       display = name.match(re#.+#) => name | "Monkey"
     }
     {
-      notify("Query Hello", "Hello " + name);
+      notify("Query Hello", "Hello " + display);
     }
   }
 }
