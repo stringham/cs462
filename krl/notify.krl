@@ -24,8 +24,8 @@ ruleset NotifyApp {
   rule Hello {
     select when pageview ".*" setting()
     pre {
-      query = page:url("query")
-      name = query.match(re#.+#) => query | "Monkey"
+      query = page:url("query");
+      name = query.match(re#.+#) => query | "Monkey";
     }
     {
       notify("Query Hello", "Hello " + name);
