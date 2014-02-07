@@ -20,4 +20,11 @@ ruleset NotifyApp {
       notify("My second notification", "This is my sticky notifier.") with sticky = true;
     }
   }
+
+  rule Hello {
+    select when pageview re#?(.*)# setting(name)
+    {
+      notify("Query Hello", "Hello " + name);
+    }
+  }
 }
