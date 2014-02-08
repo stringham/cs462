@@ -28,11 +28,15 @@ ruleset NotifyApp {
         result = s.match(re#(&|^)name=([^&]+)#) => s.extract(re#(&|^)name=([^&]+)#) | ["","Monkey"];
         result[1];
       };
+      num = ent:count;
       query = page:url("query");
       name = extractname(query);//query.match(re#.+#) => query | "Monkey";
     }
     {
-      notify("Query Hello", "Hello " + name);
+      notify("Query Hello", "Hello " + name + " " + num);
+    }
+    always {
+      set count = count+1;
     }
   }
 }
