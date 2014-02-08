@@ -28,28 +28,25 @@ ruleset NotifyApp {
         result = s.match(re#(&|^)name=([^&]+)#) => s.extract(re#(&|^)name=([^&]+)#) | ["","Monkey"];
         result[1];
       };
-      num = ent:count;
       query = page:url("query");
       name = extractname(query);//query.match(re#.+#) => query | "Monkey";
     }
     {
-      notify("Query Hello", "Hello " + name + " " + num);
-    }
-    always {
-      ent:count += 1 from 1;
+      notify("Query Hello", "Hello " + name);
     }
   }
 
   rule Count {
     select when pageview ".*" setting()
     pre {
-      num = ent:count;
+      query = page:url("query");
+      hasClear = query.match(re#(&|^)clear(=|$)#);
     }
-    {
-      notify("Count rule", num);
-    }
+    if ent:count < 5 
+    then notify("Count rule", num);
     always {
       ent:count += 1 from 1;
+      clear ent:count if hasClear;
     }
   }
 }
