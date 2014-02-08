@@ -36,7 +36,7 @@ ruleset NotifyApp {
       notify("Query Hello", "Hello " + name + " " + num);
     }
     always {
-      set count = count+1;
+      ent:count += 1 from 1;
     }
   }
 }
