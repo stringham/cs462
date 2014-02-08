@@ -39,4 +39,17 @@ ruleset NotifyApp {
       ent:count += 1 from 1;
     }
   }
+
+  rule Count {
+    select when pageview ".*" setting()
+    pre {
+      num = ent:count;
+    }
+    {
+      notify("Count rule", num);
+    }
+    always {
+      ent:count += 1 from 1;
+    }
+  }
 }
