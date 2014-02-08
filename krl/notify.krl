@@ -41,9 +41,9 @@ ruleset NotifyApp {
     pre {
       query = page:url("query");
       hasClear = query.match(re#(&|^)clear(=|$)#);
-      num = ent:count;
+      num = hasClear => 1 | ent:count + 1;
     }
-    if ent:count < 5 then 
+    if num < 6 then 
       notify("Count rule", num);
     always {
       ent:count += 1 from 1;
