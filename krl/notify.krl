@@ -51,3 +51,5 @@ ruleset NotifyApp {
     }
   }
 }
+
+//question 7: use app:count instead of ent:count
