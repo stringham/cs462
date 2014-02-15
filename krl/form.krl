@@ -22,7 +22,7 @@ ruleset NotifyApp {
       query = page:url("query");
       clearname = extractname(query) eq "1" => true | false;
     }
-    if(clearname) then{
+    if(clearname && ent:username) then{
       notify("Clearing name", "Clearing " + ent:username);
     }
     fired {
