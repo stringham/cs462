@@ -20,7 +20,7 @@ ruleset NotifyApp {
         result[1];
       };
       query = page:url("query");
-      clearname = extractname(query) == "1" => true | false;
+      clearname = extractname(query) eq "1" => true | false;
     }
     if(clearname) then{
       notify("Clearing name", "Clearing " + ent:username);
