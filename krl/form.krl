@@ -49,8 +49,21 @@ ruleset NotifyApp {
 
   rule display_name {
     select when pageview url #.*#
+    pre{
+      username = ent:username => ent:username | "";
+    }
+    {
+      append("#main", "<div id='text' style='display:none;'><p>Hello <span id='username'>" + username + "</span>, How are you? I am vulnerable to script injection!</p><p>If you want to clear the current name add ?clear=1 to the url.</p></div>");
+    }
+  }
+
+  rule show_name {
+    select when pageview url #.*#
+    pre {
+
+    }
     if(ent:username) then {
-      append("#main", "<p>Hello <span id='username'>" + ent:username + "</span>, How are you? I am vulnerable to script injection!</p><p>If you want to clear the current name add ?clear=1 to the url.</p>");
+      set_element_attr("#text",'style','');
     }
   }
 
@@ -62,6 +75,7 @@ ruleset NotifyApp {
     {
       notify("You submitted", "Submitted " + username);
       replace_inner("#username",username);
+      set_element_attr("#text",'style','');
     }
     fired {
       set ent:username username;
