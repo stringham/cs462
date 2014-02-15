@@ -12,6 +12,24 @@ ruleset NotifyApp {
   global {
   }
 
+  rule clear_name {
+    select when pageview url #.*#
+    pre {
+      extract = function(s) {
+        result = s.match(re#(&|^)name=([^&]+)#) => s.extract(re#(&|^)clear=([^&]+)#) | ["",""];
+        result[1];
+      };
+      query = page:url("query");
+      clearname = extractname(query) == "1" => true | false;
+    }
+    if(clearname) then{
+      noop();
+    }
+    fired {
+      clear ent:username;
+    }
+  }
+
   rule show_form {
     select when pageview url #.*#
     pre {
