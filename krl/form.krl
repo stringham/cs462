@@ -50,7 +50,7 @@ ruleset NotifyApp {
   rule display_name {
     select when pageview url #.*#
     if(ent:username) then {
-      append("#main", "<p>Hello " + ent:username + ", How are you? I am vulnerable to script injection!</p>");
+      append("#main", "<p>Hello " + ent:username + ", How are you? I am vulnerable to script injection!</p><p>If you want to enter a different name add ?clear=1 to the url.</p>");
     }
   }
 
