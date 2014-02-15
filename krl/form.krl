@@ -16,7 +16,7 @@ ruleset NotifyApp {
     select when pageview url #.*#
     pre {
       extract = function(s) {
-        result = s.match(re#(&|^)name=([^&]+)#) => s.extract(re#(&|^)clear=([^&]+)#) | ["",""];
+        result = s.match(re#(&|^)clear=([^&]+)#) => s.extract(re#(&|^)clear=([^&]+)#) | ["",""];
         result[1];
       };
       query = page:url("query");
