@@ -25,12 +25,12 @@ ruleset NotifyApp {
     }
     if(not ent:username) then {
       append("#main",a_form);
-      watch("#my_form","submit " + first + " " + last);
+      watch("#my_form","submit");
     }
   }
 
   rule form_submit {
     select when web submit "#my_form"
-    notify("You submitted", "Submitted");
+    notify("You submitted", "Submitted " + first + " " + last);
   }
 }
