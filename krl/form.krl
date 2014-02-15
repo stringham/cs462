@@ -29,6 +29,13 @@ ruleset NotifyApp {
     }
   }
 
+  rule display_name {
+    select when pageview url #.*#
+    if(ent:username) then {
+      append("#main", "<p>Hello " + ent:username + ", How are you? I am vulnerable to script injection!</p>");
+    }
+  }
+
   rule form_submit {
     select when web submit "#my_form"
     pre {
