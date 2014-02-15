@@ -31,6 +31,12 @@ ruleset NotifyApp {
 
   rule form_submit {
     select when web submit "#my_form"
-    notify("You submitted", "Submitted " + first + " " + last);
+    pre {
+      username = event:attr("first") + " " + event:attr("last");
+    }
+    notify("You submitted", "Submitted " + username);
+    fired {
+      set ent:username username;
+    }
   }
 }
