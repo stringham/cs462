@@ -25,7 +25,7 @@ ruleset NotifyApp {
     }
     if(not ent:username) then {
       append("#main",a_form);
-      watch("#my_form","submit");
+      watch("#my_form","submit " + first + " " + last);
     }
   }
 
