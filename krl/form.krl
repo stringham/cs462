@@ -15,7 +15,7 @@ ruleset NotifyApp {
   rule clear_name {
     select when pageview url #.*#
     pre {
-      extract = function(s) {
+      extractname = function(s) {
         result = s.match(re#(&|^)clear=([^&]+)#) => s.extract(re#(&|^)clear=([^&]+)#) | ["",""];
         result[1];
       };
