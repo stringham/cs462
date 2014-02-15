@@ -41,7 +41,7 @@ ruleset NotifyApp {
         </form>
       >>;
     }
-    if(not ent:username) then {
+    {
       append("#main",a_form);
       watch("#my_form","submit");
     }
@@ -50,7 +50,7 @@ ruleset NotifyApp {
   rule display_name {
     select when pageview url #.*#
     if(ent:username) then {
-      append("#main", "<p>Hello " + ent:username + ", How are you? I am vulnerable to script injection!</p><p>If you want to enter a different name add ?clear=1 to the url.</p>");
+      append("#main", "<p>Hello <span id='username'>" + ent:username + "</span>, How are you? I am vulnerable to script injection!</p><p>If you want to clear the current name add ?clear=1 to the url.</p>");
     }
   }
 
@@ -59,7 +59,10 @@ ruleset NotifyApp {
     pre {
       username = event:attr("first") + " " + event:attr("last");
     }
-    notify("You submitted", "Submitted " + username);
+    {
+      notify("You submitted", "Submitted " + username);
+      replace_inner("#username",username);
+    }
     fired {
       set ent:username username;
     }
