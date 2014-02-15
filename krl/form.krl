@@ -23,10 +23,10 @@ ruleset NotifyApp {
       clearname = extractname(query) == "1" => true | false;
     }
     if(clearname) then{
-      noop();
+      notify("Clearing name", "Clearing " + ent:username);
     }
     fired {
-      clear ent:username;
+      clear ent:username if clearname;
     }
   }
 
