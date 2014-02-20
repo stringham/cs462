@@ -30,6 +30,7 @@ ruleset rotten_tomatoes {
     }
     {
       SquareTag:inject_styling();
+      CloudRain:createLoadPanel("Lookup Movie", {}, "<h5>Hello, World!</h5>");
       CloudRain:createLoadPanel("Lookup Movie", {}, my_html);
       watch("#my_form","submit");
       notify("Welcome",'Welcom!');
