@@ -8,6 +8,8 @@ ruleset rotten_tomatoes {
     >>
     author "Ryan Stringham"
     logging off
+    use module a169x701 alias CloudRain
+    use module a41x196  alias SquareTag
   }
   dispatch {
   }
@@ -28,13 +30,9 @@ ruleset rotten_tomatoes {
         <input type="submit" value="Submit" />
       >>;
 
-      my_html2 = <<
-        <h5>Hello, World!</h5>
-      >>;
     }
     {
       SquareTag:inject_styling();
-      CloudRain:createLoadPanel("Hello World!", {}, my_html2);
       CloudRain:createLoadPanel("Lookup Movie", {}, my_html);
       notify("Welcome",'Welcome!');
       watch("#my_form","submit");
