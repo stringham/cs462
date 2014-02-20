@@ -14,10 +14,11 @@ ruleset rotten_tomatoes {
   dispatch {
   }
   global {
-    rotten = function(){
+    rotten = function(title){
       http:get('http://api.rottentomatoes.com/api/public/v1.0/movies.json',
           {
-            'apiKey':'42ksrsasw5k4w3hmztn8vdee'
+            'apiKey':'42ksrsasw5k4w3hmztn8vdee',
+            'q':title
           }
         )
     }
@@ -45,9 +46,11 @@ ruleset rotten_tomatoes {
     select when web submit "#my_form"
     pre {
       movie = event:attr("title");
+      results = rotten(movie);
     }
     {
       notify("You submitted", "Submitted " + movie);
+      notify("results",results) with sticky=true;
     }
   }
 }
