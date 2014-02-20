@@ -27,13 +27,17 @@ ruleset rotten_tomatoes {
         <input type="text" name="title" placeholder="Movie Title"/>
         <input type="submit" value="Submit" />
       >>;
+
+      my_html2 = <<
+        <h5>Hello, World!</h5>
+      >>;
     }
     {
       SquareTag:inject_styling();
-      CloudRain:createLoadPanel("Lookup Movie", {}, "<h5>Hello, World!</h5>");
+      CloudRain:createLoadPanel("Hello World!", {}, my_html2);
       CloudRain:createLoadPanel("Lookup Movie", {}, my_html);
+      notify("Welcome",'Welcome!');
       watch("#my_form","submit");
-      notify("Welcome",'Welcom!');
     }
   }
 
