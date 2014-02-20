@@ -26,8 +26,10 @@ ruleset rotten_tomatoes {
     select when web cloudAppSelected
     pre {
       my_html = <<
-        <input type="text" name="title" placeholder="Movie Title"/>
-        <input type="submit" value="Submit" />
+        <form id="my_form" onsubmit="return false;">
+          <input type="text" name="title" placeholder="Movie Title"/>
+          <input type="submit" value="Submit" />
+        </form>
       >>;
 
     }
