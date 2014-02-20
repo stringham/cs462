@@ -53,7 +53,6 @@ ruleset rotten_tomatoes {
     {
       SquareTag:inject_styling();
       CloudRain:createLoadPanel("Lookup Movie", {}, my_html);
-      notify("Welcome",'Welcome!');
       watch("#my_form","submit");
     }
   }
@@ -70,7 +69,6 @@ ruleset rotten_tomatoes {
 //      rating = results.pick("$.movies[0]..critics_rating");
     }
     {
-      notify("You submitted", "Submitted " + movie);
       replace_inner("#movie_result",results);
     }
   }
