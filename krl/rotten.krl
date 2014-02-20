@@ -31,7 +31,7 @@ ruleset rotten_tomatoes {
       >>;
       
       error = <<
-        <p>No results found</p>
+        <p>No results found for #{title}. Please search again.</p>
       >>;
       html = (total > 0) => movie | error;
       html;
@@ -41,12 +41,12 @@ ruleset rotten_tomatoes {
     select when web cloudAppSelected
     pre {
       my_html = <<
+        <div id="movie_result" style="width:500px; margin:auto;">
+        </div>
         <form id="my_form" onsubmit="return false;">
           <input type="text" name="title" placeholder="Movie Title"/>
           <input type="submit" value="Submit" />
         </form>
-        <div id="movie_result" style="width:500px; margin:auto;">
-        </div>
       >>;
 
     }
