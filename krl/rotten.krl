@@ -20,4 +20,28 @@ ruleset rotten_tomatoes {
         )
     }
   }
+  rule Rotten {
+    select when web cloudAppSelected
+    pre {
+      my_html = <<
+        <input type="text" name="title" placeholder="Movie Title"/>
+        <input type="submit" value="Submit" />
+      >>;
+    }
+    {
+      SquareTag:inject_styling();
+      CloudRain:createLoadPanel("Lookup Movie", {}, my_html);
+      watch("#my_form","submit");
+    }
+  }
+
+  rule form_submit {
+    select when web submit "#my_form"
+    pre {
+      movie = event:attr("title");
+    }
+    {
+      notify("You submitted", "Submitted " + movie);
+    }
+  }
 }
