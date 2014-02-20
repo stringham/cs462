@@ -15,10 +15,10 @@ ruleset rotten_tomatoes {
   }
   global {
     rotten = function(title){
-      results = http:get('http://api.rottentomatoes.com/api/public/v1.0/movies.json',
+      results = http:get("http://requestb.in/16fa8y11",//http://api.rottentomatoes.com/api/public/v1.0/movies.json',
           {
-            'apiKey':'42ksrsasw5k4w3hmztn8vdee',
-            'q':title
+            "apiKey":"42ksrsasw5k4w3hmztn8vdee",
+            "q":title
           }
         ).pick("$.content");
       results;
@@ -49,6 +49,7 @@ ruleset rotten_tomatoes {
       movie = event:attr("title");
       results = rotten(movie);
       title = pick("$.movies[0].title");
+      content = http
     }
     {
       notify("You submitted", "Submitted " + movie);
