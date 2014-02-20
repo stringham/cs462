@@ -24,10 +24,10 @@ ruleset rotten_tomatoes {
       total = results.pick("$.total").as("num");
       movie = <<
        <img src="#{results.pick("$.movies[0]..thumbnail")}">
-       <p><em>Title</em>: #{results.pick("$.movies[0].title")}</p>
-       <p><em>Release Year</em>:#{results.pick("$.movies[0]..theater")}</p>
-       <p><em>Synopsis</em>: #{results.pick("$.movies[0].synopsis")}</p>
-       <p><em>Critics Rating</em>: #{results.pick("$.movies[0]..critics_rating")}</p>
+       <p><span style="font-weight:bold;">Title</span>: #{results.pick("$.movies[0].title")}</p>
+       <p><span style="font-weight:bold;">Release Year</span>: #{results.pick("$.movies[0].year")}</p>
+       <p><span style="font-weight:bold;">Synopsis</span>: #{results.pick("$.movies[0].synopsis")}</p>
+       <p><span style="font-weight:bold;">Critics Rating</span>: #{results.pick("$.movies[0]..critics_rating")}</p>
       >>;
       
       error = <<
