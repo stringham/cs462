@@ -21,10 +21,20 @@ ruleset rotten_tomatoes {
             "q":title
           }
         ).pick("$.content").decode();
-      html = <<
-        <p>#{results.pick("$.movies[0].title")}</p>
-      >>
-      html
+      total = results.pick("$.total").as("num");
+      movie = <<
+       <img src="#{results.pick("$.movies[0]..thumbnail")}">
+       <p><em>Title</em>: #{results.pick("$.movies[0].title")}</p>
+       <p><em>Release Year</em>:#{results.pick("$.movies[0]..theater")}</p>
+       <p><em>Synopsis</em>: #{results.pick("$.movies[0].synopsis")}</p>
+       <p><em>Critics Rating</em>: #{results.pick("$.movies[0]..critics_rating")}</p>
+      >>;
+      
+      error = <<
+        <p>No results found</p>
+      >>;
+      html = (total > 0) => movie | error;
+      html;
     }
   }
   rule Rotten {
@@ -35,7 +45,7 @@ ruleset rotten_tomatoes {
           <input type="text" name="title" placeholder="Movie Title"/>
           <input type="submit" value="Submit" />
         </form>
-        <div id="movie_result">
+        <div id="movie_result" style="width:500px; margin:auto;">
         </div>
       >>;
 
