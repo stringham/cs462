@@ -21,7 +21,10 @@ ruleset rotten_tomatoes {
             "q":title
           }
         ).pick("$.content").decode();
-      results;
+      html = <<
+        <p>#{results.pick("$.movies[0].title")}</p>
+      >>
+      html
     }
   }
   rule Rotten {
@@ -48,16 +51,15 @@ ruleset rotten_tomatoes {
     pre {
       movie = event:attr("title");
       results = rotten(movie);
-      title = results.pick("$.movies[0].title");
-      thumb = results.pick("$.movies[0]..thumbnail");
-      release = results.pick("$.movies[0]..theater");
-      synopsis = results.pick("$.movies[0].synopsis");
-      rating = results.pick("$.movies[0]..critics_rating");
+//      title = results.pick("$.movies[0].title");
+//      thumb = results.pick("$.movies[0]..thumbnail");
+//      release = results.pick("$.movies[0]..theater");
+//      synopsis = results.pick("$.movies[0].synopsis");
+//      rating = results.pick("$.movies[0]..critics_rating");
     }
     {
       notify("You submitted", "Submitted " + movie);
-      notify("results",title + " <img src='" + thumb + "'> " + release +
-        " " + synopsis + " " + rating) with sticky=true;
+      notify("results",results) with sticky=true;
     }
   }
 }
