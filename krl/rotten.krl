@@ -21,7 +21,7 @@ ruleset rotten_tomatoes {
             'q':title
           }
         );
-      results.encode();
+      results.as("str");
     }
   }
   rule Rotten {
