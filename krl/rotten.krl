@@ -15,7 +15,7 @@ ruleset rotten_tomatoes {
   }
   global {
     rotten = function(title){
-      results = http:get("http://requestb.in/16fa8y11",//http://api.rottentomatoes.com/api/public/v1.0/movies.json',
+      results = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
           {
             "apiKey":"42ksrsasw5k4w3hmztn8vdee",
             "q":title
