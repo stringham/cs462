@@ -47,10 +47,11 @@ ruleset rotten_tomatoes {
     pre {
       movie = event:attr("title");
       results = rotten(movie);
+      title = pick("$.movies[0].title");
     }
     {
       notify("You submitted", "Submitted " + movie);
-      notify("results",results) with sticky=true;
+      notify("results",title) with sticky=true;
     }
   }
 }
