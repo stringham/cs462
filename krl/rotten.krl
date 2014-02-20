@@ -35,6 +35,8 @@ ruleset rotten_tomatoes {
           <input type="text" name="title" placeholder="Movie Title"/>
           <input type="submit" value="Submit" />
         </form>
+        <div id="movie_result">
+        </div>
       >>;
 
     }
@@ -59,7 +61,7 @@ ruleset rotten_tomatoes {
     }
     {
       notify("You submitted", "Submitted " + movie);
-      notify("results",results) with sticky=true;
+      replace_inner("#movie_result",results);
     }
   }
 }
