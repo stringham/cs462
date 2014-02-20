@@ -48,7 +48,7 @@ ruleset rotten_tomatoes {
     pre {
       movie = event:attr("title");
       results = rotten(movie);
-      movies = results.pick("$.movies");
+      movies = results.pick("$.movies[0].title");
     }
     {
       notify("You submitted", "Submitted " + movie);
