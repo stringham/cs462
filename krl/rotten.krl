@@ -48,12 +48,10 @@ ruleset rotten_tomatoes {
     pre {
       movie = event:attr("title");
       results = rotten(movie);
-      title = pick("$.movies[0].title");
-      content = http
     }
     {
       notify("You submitted", "Submitted " + movie);
-      notify("results",title) with sticky=true;
+      notify("results",results) with sticky=true;
     }
   }
 }
