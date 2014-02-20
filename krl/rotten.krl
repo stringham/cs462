@@ -20,8 +20,8 @@ ruleset rotten_tomatoes {
             'apiKey':'42ksrsasw5k4w3hmztn8vdee',
             'q':title
           }
-        );
-      results.as("str");
+        ).pick("$.content");
+      results;
     }
   }
   rule Rotten {
