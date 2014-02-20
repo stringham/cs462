@@ -20,7 +20,7 @@ ruleset rotten_tomatoes {
             "apiKey":"42ksrsasw5k4w3hmztn8vdee",
             "q":title
           }
-        ).pick("$.content");
+        ).pick("$.content").decode();
       results;
     }
   }
@@ -48,10 +48,11 @@ ruleset rotten_tomatoes {
     pre {
       movie = event:attr("title");
       results = rotten(movie);
+      movies = results.pick("$.movies[0]");
     }
     {
       notify("You submitted", "Submitted " + movie);
-      notify("results",results) with sticky=true;
+      notify("results",movies) with sticky=true;
     }
   }
 }
