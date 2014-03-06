@@ -31,7 +31,7 @@ ruleset rotten_tomatoes {
       checkin = event:attr("checkin").decode();
       test = event:attr("checkin");
       venue = checkin.pick("$.venue.name").as("str");
-      city = checkin.pick("$.venue.location.city").as("str");
+      city = checkin.pick("$.venue.location.city");
       shout = checkin.pick("$.shout").as("str");
       created = checkin.pick("$.createdAt").as("str");
     }
