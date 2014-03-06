@@ -12,14 +12,14 @@ ruleset rotten_tomatoes {
   dispatch {
   }
   global {
-      getCheckinHtml = function(checkin){
+      getCheckinHtml = function(venue, city, shout, created){
         html = <<
           <div style="margin:auto;width:400px;height:200px;">
             <h1>Foursquare checkin:</h1>
-            <p>Venue: #{checkin.pick("$.venue.name").as("str")}</p>
-            <p>City: #{checkin.pick("$.venue.location.city").as("str")}</p>
-            <p>Shout: #{checkin.pick("$.shout").as("str")}</p>
-            <p>Created At: #{checkin.pick("$.createdAt").as("str")}</p>
+            <p>Venue: #{venue}</p>
+            <p>City: #{city}</p>
+            <p>Shout: #{shout}</p>
+            <p>Created At: #{created}</p>
         >>;
         html;
       }
@@ -29,14 +29,21 @@ ruleset rotten_tomatoes {
     select when foursquare checkin
     pre {
       checkin = event:attr("checkin").decode();
+      venue = checkin.pick("$.venue.name").as("str");
+      city = checkin.pick("$.venue.location.city").as("str");
+      shout = checkin.pick("$.shout").as("str");
+      created = checkin.pick("$.createdAt").as("str");
     }
     {
       emit <<
-      console.log(#{ent:checkin});
+      console.log("foursquare checkin");
       >>;
     }
     fired {
-      set ent:checkin getCheckinHtml(checkin);
+      set ent:venue venue;
+      set ent:city city;
+      set ent:shout shout;
+      set ent:created created;
     }
   }
 
@@ -44,9 +51,9 @@ ruleset rotten_tomatoes {
     select when web cloudAppSelected
     {
       SquareTag:inject_styling();
-      CloudRain:createLoadPanel("Foursquare Checkin Information", {}, ent:checkin);
+      CloudRain:createLoadPanel("Foursquare Checkin Information", {}, getCheckinHtml(ent:venue, ent:city, ent:shout, ent:created));
       emit <<
-        console.log("cloud app selected.");
+        console.log("cloud app selected. :)");
       >>;
     }
   }
