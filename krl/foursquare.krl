@@ -14,7 +14,7 @@ ruleset rotten_tomatoes {
   global {
       getCheckinHtml = function(checkin){
         html = <<
-          <div style="margin:auto;width:200px;height:100px;">
+          <div style="margin:auto;width:400px;height:200px;">
             <h1>Foursquare checkin:</h1>
             <p>Venue: #{checkin.pick("$.venue.name").as("str")}</p>
             <p>City: #{checkin.pick("$.venue.location.city").as("str")}</p>
@@ -33,6 +33,7 @@ ruleset rotten_tomatoes {
     {
       emit <<
         console.log("foursquare checkin");
+        console.log(#{ent:checkin});
       >>;
     }
     fired {
