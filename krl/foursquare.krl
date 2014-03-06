@@ -31,7 +31,7 @@ ruleset foursquare {
       test    = event:attr("checkin").decode();
       venue   = test.pick("$.venue.name").as("str");
       city    = test.pick("$.venue..city").as("str");
-      shout   = test.pick("$.shout").as("str");
+      shout   = test.decode().pick("$.shout").as("str");
       created = test.pick("$.createdAt").as("str");
     }
     fired {
