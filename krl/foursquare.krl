@@ -28,19 +28,18 @@ ruleset foursquare {
   rule foursquare_checkin {
     select when foursquare checkin
     pre {
-      c = event:attr("checkin").decode();
-      venue = c.pick("$.venue.name").as("str");
-      city = c.pick("$.venue.location.city").as("str");
-      shout = c.pick("$.shout").as("str");
-      created = c.pick("$.createdAt").as("str");
-      test = c;
-    }
+      response = event:attr("checkin");
+      venue = response.decode().pick("$.venue.name").as("str");
+      city = response.decode().pick("$.venue..city").as("str");
+      shout = response.decode().pick("$.shout").as("str");
+      createdAt = response.decode().pick("$.createdAt").as("str");
+    } 
     fired {
       set ent:venue venue;
       set ent:city city;
       set ent:shout shout;
-      set ent:created created;
-      set ent:test test;
+      set ent:created createdAt;
+      set ent:test venue;
     }
   }
 
