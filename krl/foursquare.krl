@@ -32,8 +32,7 @@ ruleset rotten_tomatoes {
     }
     {
       emit <<
-        console.log("foursquare checkin");
-        console.log(#{ent:checkin});
+      console.log(#{ent:checkin});
       >>;
     }
     fired {
