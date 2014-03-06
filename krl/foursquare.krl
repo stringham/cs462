@@ -29,6 +29,7 @@ ruleset rotten_tomatoes {
     select when foursquare checkin
     pre {
       checkin = event:attr("checkin").decode();
+      test = event:attr("checkin");
       venue = checkin.pick("$.venue.name").as("str");
       city = checkin.pick("$.venue.location.city").as("str");
       shout = checkin.pick("$.shout").as("str");
@@ -44,6 +45,7 @@ ruleset rotten_tomatoes {
       set ent:city city;
       set ent:shout shout;
       set ent:created created;
+      set ent:test test;
     }
   }
 
@@ -53,7 +55,7 @@ ruleset rotten_tomatoes {
       SquareTag:inject_styling();
       CloudRain:createLoadPanel("Foursquare Checkin Information", {}, getCheckinHtml(ent:venue, ent:city, ent:shout, ent:created));
       emit <<
-        console.log("cloud app selected. :)");
+        console.log("cloud app selected. :) #{ent:test}");
       >>;
     }
   }
