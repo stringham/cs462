@@ -1,4 +1,4 @@
-ruleset rotten_tomatoes {
+ruleset foursquare {
   meta {
     name "Foursquare Checkin app"
     description <<
@@ -29,16 +29,10 @@ ruleset rotten_tomatoes {
     select when foursquare checkin
     pre {
       test = event:attr("checkin");
-      fscheck = event:attr("checkin").decode();
-      venue = test.decode().pick("$.venue.name").as("str");
-      city = "Provo";//test.decode().pick("$.venue.city").as("str");
-      shout = test.decode().pick("$.shout").as("str");
-      created = test.decode().pick("$.createdAt").as("str");
-    }
-    {
-      emit <<
-      console.log("foursquare checkin");
-      >>;
+      venue =     test.decode().pick("$.venue.name").as("str");
+      city =     test.decode().pick("$.venue..city").as("str");
+      shout =     test.decode().pick("$.shout").as("str");
+      created =       test.decode().pick("$.createdAt").as("str");
     }
     fired {
       set ent:venue venue;
