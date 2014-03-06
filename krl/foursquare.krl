@@ -53,9 +53,9 @@ ruleset rotten_tomatoes {
     select when web cloudAppSelected
     {
       SquareTag:inject_styling();
-      CloudRain:createLoadPanel("Foursquare Checkin Information", {}, getCheckinHtml(ent:venue, ent:city, ent:shout, ent:created));
+      CloudRain:createLoadPanel("Foursquare Checkin Information", {}, getCheckinHtml(ent:test, ent:city, ent:shout, ent:created));
       emit <<
-        console.log("cloud app selected. :) #{ent:test}");
+        console.log("cloud app selected. :) ");
       >>;
     }
   }
