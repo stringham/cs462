@@ -28,12 +28,12 @@ ruleset rotten_tomatoes {
   rule foursquare_checkin {
     select when foursquare checkin
     pre {
-      checkin = event:attr("checkin").as("str").decode();
+      fscheck = event:attr("checkin").decode();
       test = event:attr("checkin");
-      venue = checkin.pick("$.venue.name").as("str");
-      city = checkin.pick("$.venue.city");
-      shout = checkin.pick("$.shout").as("str");
-      created = checkin.pick("$.createdAt").as("str");
+      venue = fscheck.pick("$.venue.name").as("str");
+      city = fscheck.pick("$.venue.city").as("str");
+      shout = fscheck.pick("$.shout").as("str");
+      created = fscheck.pick("$.createdAt").as("str");
     }
     {
       emit <<
