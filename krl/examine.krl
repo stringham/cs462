@@ -30,7 +30,10 @@ ruleset examin_location {
     select when web cloudAppSelected
     {
       SquareTag:inject_styling();
-      CloudRain:createLoadPanel("Inspector", {}, checkinToHtml(location_data:get_location_data("fs_checkin")));
+      emit <<
+        console.log("#{location_data:get_location_data("fs_checkin")}");
+      >>;
+      CloudRain:createLoadPanel("Show checkin data", {}, checkinToHtml(location_data:get_location_data("fs_checkin")));
     }
   }
 }
