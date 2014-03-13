@@ -14,7 +14,7 @@ ruleset location_data {
   }
   global {
     get_location_data = function(key) {
-      res = app:data{k} || "nothing stored by that key"
+      res = app:data{key} || "nothing stored by that key"
       res
     }
   }
