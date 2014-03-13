@@ -20,7 +20,7 @@ ruleset examin_location {
           <p>Venue: #{data.pick("$.venue")}</p>
           <p>City: #{data.pick("$.city")}</p>
           <p>Shout: #{data.pick("$.shout")}</p>
-          <p>Created At: #{data.pick("$.created")}</p>
+          <p>Created At: #{data.pick("$.created").as("str")}</p>
       >>;
       html;
     }
