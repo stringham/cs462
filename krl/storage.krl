@@ -20,13 +20,13 @@ ruleset location_data {
   }
 
   rule add_location_item  {
-    select when web pds new_location_data
+    select when pds new_location_data
     pre {
       key = event:attr("key");
       val = event:attr("value");
       data = {};
     }
-    send_directive(k) with location = val;
+    send_directive(key) with location = val;
     always {
       set app:data data.put([key], val);
     }
