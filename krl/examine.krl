@@ -17,10 +17,10 @@ ruleset examin_location {
       html = <<
         <div style="margin:auto;width:400px;height:200px;">
           <h1>Foursquare checkin:</h1>
-          <p>Venue: #{data.pick("$..venue")}</p>
-          <p>City: #{data.pick("$..city")}</p>
-          <p>Shout: #{data.pick("$..shout")}</p>
-          <p>Created At: #{data.pick("$..created")}</p>
+          <p>Venue: #{data.pick("$.venue")}</p>
+          <p>City: #{data.pick("$.city")}</p>
+          <p>Shout: #{data.pick("$.shout")}</p>
+          <p>Created At: #{data.pick("$.created")}</p>
       >>;
       html;
     }
@@ -30,8 +30,8 @@ ruleset examin_location {
     select when web cloudAppSelected
     {
       SquareTag:inject_styling();
-//      CloudRain:createLoadPanel("Show checkin data", {}, checkinToHtml(location_data:get_location_data("fs_checkin")));
-      CloudRain:createLoadPanel("Show checkin test", {}, location_data:get_location_data("fs_checkin").as("str"));
+      CloudRain:createLoadPanel("Show checkin data", {}, checkinToHtml(location_data:get_location_data("fs_checkin")));
+//      CloudRain:createLoadPanel("Show checkin test", {}, location_data:get_location_data("fs_checkin").as("str"));
     }
   }
 }
