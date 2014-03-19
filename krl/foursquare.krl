@@ -33,6 +33,8 @@ ruleset foursquare {
       city = response.decode().pick("$.venue..city").as("str");
       shout = response.decode().pick("$.shout").as("str");
       createdAt = response.decode().pick("$.createdAt").as("str");
+      lat = response.decode().pick("$.venue.location.lat").as("num");
+      long = response.decode().pick("$.venue.location.lng").as("num");
     } 
     send_directive(venue) with checkin = venue;
     fired {
@@ -41,7 +43,10 @@ ruleset foursquare {
       set ent:shout shout;
       set ent:created createdAt;
       set ent:test venue;
-      raise pds event new_location_data for b505169x5 with key = "fs_checkin" and value = {"created" : createdAt, "city": city, "venue" : venue, "shout": shout};
+      set ent:lat lat;
+      set ent:long long;
+
+      raise pds event new_location_data for b505169x5 with key = "fs_checkin" and value = {"created" : createdAt, "city": city, "venue" : venue, "shout": shout, "lat": lat, "long":long};
     }
   }
 

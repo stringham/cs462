@@ -21,6 +21,8 @@ ruleset examin_location {
           <p>City: #{data.pick("$.city")}</p>
           <p>Shout: #{data.pick("$.shout")}</p>
           <p>Created At: #{data.pick("$.created")}</p>
+          <p>Latitude: #{data.pick("$.lat")}</p>
+          <p>Longitude: #{data.pick("$.long")}</p>
       >>;
       html;
     }
