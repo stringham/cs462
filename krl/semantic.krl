@@ -34,6 +34,16 @@ ruleset semantic {
     }
   }
 
+  rule test {
+    select when location newcurrent
+    pre {
+      test = "hello";
+    }
+    {
+      send_directive(test) with name = test;
+    }
+  }
+
   rule nearby {
     select when location newcurrent
     pre {
