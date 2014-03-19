@@ -35,7 +35,7 @@ ruleset semantic {
   }
 
   rule nearby {
-    select when location new_current
+    select when location newcurrent
     pre {
       lat = event:attr("lat");
       long = event:attr("long");
