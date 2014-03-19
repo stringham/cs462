@@ -1,3 +1,9 @@
+//72F60222-AF74-11E3-A564-7FC8637EDFE5
+
+//curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "lat=14.001023&long=143.00405" http://cs.kobj.net/sky/event/72F60222-AF74-11E3-A564-7FC8637EDFE5/1/location/new_current?_rids=b505169x7
+
+//http://cs.kobj.net/sky/event/72F60222-AF74-11E3-A564-7FC8637EDFE5/1/location/new_current?_rids=b505169x7.prod&lat=10&long=20
+
 ruleset semantic {
   meta {
     name "Semantic Translation"
@@ -23,7 +29,7 @@ ruleset semantic {
       long = result.pick("$.long");
     }
     {
-      notify("lat",lat);
+      notify("latitude",lat);
       notify("long",long);
     }
   }
