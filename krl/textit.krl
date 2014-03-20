@@ -24,7 +24,7 @@ ruleset textit {
     select when explicit location_nearby
     pre {
       distance = event:attr("distance");
-      message = "Nearby fired. Distance is " + distance.as("str");
+      message = "Nearby fired. Distance is " + distance.as("str") + " miles.";
     }
     {
       send_directive("texting") with dist = distance;
