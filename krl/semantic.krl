@@ -27,14 +27,14 @@ ruleset semantic {
       rlnga = math:deg2rad(lnga);
       rlatb = math:deg2rad(latb);
       rlngb = math:deg2rad(lngb);
-      distance = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEk);
+      distance = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEm);
       distance;
     }
 
     distance_from_current = function(lat,long){
       recent = location_data:get_location_data("fs_checkin");
-      latb = result.pick("$.lat").as("num");
-      longb = result.pick("$.long").as("num");
+      latb = result.pick("$.lat");
+      longb = result.pick("$.long");
       d = distance_lat_long(lat, long, latb, longb);
       d;
     }
@@ -48,11 +48,11 @@ ruleset semantic {
       long = result.pick("$.long");
     }
     {
-      notify("latitude",lat + 400000) with sticky = true;
-      notify("long",long + 400000) with sticky = true;
+      notify("latitude",lat + 4) with sticky = true;
+      notify("long",long + 4) with sticky = true;
       notify("distance",app:dist + " miles") with sticky = true;
-      notify("nearby lat", app:lat + 400000) with sticky = true;
-      notify("nearby long", app:long + 400000) with sticky = true;
+      notify("nearby lat", app:lat + 4) with sticky = true;
+      notify("nearby long", app:long + 4) with sticky = true;
     }
   }
 
