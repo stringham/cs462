@@ -33,8 +33,8 @@ ruleset semantic {
 
     distance_from_current = function(lat,long){
       recent = location_data:get_location_data("fs_checkin");
-      latb = result.pick("$.lat");
-      longb = result.pick("$.long");
+      latb = result.pick("$.lat").as("num");
+      longb = result.pick("$.long").as("num");
       d = distance_lat_long(lat, long, latb, longb);
       d;
     }
