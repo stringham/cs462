@@ -23,18 +23,12 @@ ruleset semantic {
       r90   = math:pi()/2;      
       rEm   = 3963.1676;         // radius of the Earth in mi
        
-      // convert co-ordinates to radians
       rlata = math:deg2rad(lata);
       rlnga = math:deg2rad(lnga);
       rlatb = math:deg2rad(latb);
       rlngb = math:deg2rad(lngb);
-       
-      // distance between two co-ordinates in radians
-      dR = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb);
-      // distance between two co-ordinates in kilometers
-      dE = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEm);
-
-      dE;
+      distance = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEk);
+      distance;
     }
 
     distance_from_current = function(lat,long){
@@ -69,7 +63,7 @@ ruleset semantic {
       long = event:attr("long");
       dist = distance_from_current(lat,long);
     }
-    if(dist < 5) then
+    if dist < 5 then
     {
       send_directive("location") with latitude = lat and longitude = long;
     } fired {
