@@ -20,18 +20,6 @@ ruleset textit {
   global {
   }
 
-  rule text{
-    select when pageview ".*" setting ()
-    pre {
-
-    }
-    {
-      notify("sending...", "Sending text message!");
-      twilio:send_sms("+18018757355", "+18012069888", "Test!");
-    }
-    
-  }
-
   rule nearby {
     select when explicit location_nearby
     pre {
