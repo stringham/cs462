@@ -74,7 +74,7 @@ ruleset semantic {
       set app:lat lat;
       set app:long long;
     } else {
-      raise explicit event location_far with distance = distance;
+      raise explicit event location_far with distance = dist;
       set app:near false;
       set app:dist dist;
       set app:lat lat;
