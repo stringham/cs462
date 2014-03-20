@@ -48,11 +48,11 @@ ruleset semantic {
       long = result.pick("$.long");
     }
     {
-      notify("latitude",lat) with sticky = true;
-      notify("long",long) with sticky = true;
+      notify("latitude",lat + 400000) with sticky = true;
+      notify("long",long + 400000) with sticky = true;
       notify("distance",app:dist + " miles") with sticky = true;
-      notify("nearby lat", app:lat) with sticky = true;
-      notify("nearby long", app:long) with sticky = true;
+      notify("nearby lat", app:lat + 400000) with sticky = true;
+      notify("nearby long", app:long + 400000) with sticky = true;
     }
   }
 
