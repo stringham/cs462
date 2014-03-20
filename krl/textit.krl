@@ -31,4 +31,15 @@ ruleset textit {
       twilio:send_sms("+18018757355", "+18012069888", message);
     }
   }
+
+  rule farAway {
+    select when explicit location_far
+    pre {
+      distance = event:attr("distance");
+      message = "Nearby fired. Distance is " + distance.as("str") + " miles.";
+    }
+    {
+      send_directive("too far to text") with dist = distance;
+    }
+  }
 }
