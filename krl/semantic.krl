@@ -33,8 +33,8 @@ ruleset semantic {
 
     distance_from_current = function(lat,long){
       recent = location_data:get_location_data("fs_checkin");
-      latb = result.pick("$.lat");
-      longb = result.pick("$.long");
+      latb = recent.pick("$.lat");
+      longb = recent.pick("$.long");
       d = distance_lat_long(lat, long, latb, longb);
       d;
     }
@@ -53,7 +53,7 @@ ruleset semantic {
       notify("distance",app:dist + " miles") with sticky = true;
       notify("nearby lat", app:lat) with sticky = true;
       notify("nearby long", app:long) with sticky = true;
-      notify("dist now", distance_lat_long(lat,long,app:lat,app:long));
+      notify("dist now", distance_lat_long(lat,long,app:lat,app:long)) with sticky = true;
     }
   }
 
