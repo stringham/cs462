@@ -54,9 +54,11 @@ ruleset semantic {
       long = result.pick("$.long");
     }
     {
-      notify("latitude",lat);
-      notify("long",long);
-      notify("distance",app:dist + " miles");
+      notify("latitude",lat) with sticky = true;
+      notify("long",long) with sticky = true;
+      notify("distance",app:dist + " miles") with sticky = true;
+      notify("nearby lat", app:lat) with sticky = true;
+      notify("nearby long", app:long) with sticky = true;
     }
   }
 
@@ -73,9 +75,13 @@ ruleset semantic {
     } fired {
       set app:near true;
       set app:dist dist;
+      set app:lat lat;
+      set app:long long;
     } else {
       set app:near false;
       set app:dist dist;
+      set app:lat lat;
+      set app:long long;
     }
   }
 }
