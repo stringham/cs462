@@ -27,6 +27,7 @@ ruleset textit {
       message = "Nearby fired. Distance is " + distance.as("str");
     }
     {
+      send_directive("texting") with dist = distance;
       twilio:send_sms("+18018757355", "+18012069888", message);
     }
   }
