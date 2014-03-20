@@ -68,11 +68,13 @@ ruleset semantic {
     {
       send_directive("location") with latitude = lat and longitude = long;
     } fired {
+      raise explicit event location_nearby with distance = distance;
       set app:near true;
       set app:dist dist;
       set app:lat lat;
       set app:long long;
     } else {
+      raise explicit event location_far with distance = distance;
       set app:near false;
       set app:dist dist;
       set app:lat lat;
