@@ -23,6 +23,12 @@ ruleset foursquare {
         >>;
         html;
       }
+
+      subscriptionMap = [
+        {"cid": "5D35619C-B16F-11E3-9C90-457E87B7806A"},
+        {"cid": "8B2BBA7E-B16F-11E3-A4F2-B6FC283232C8"}
+      ];
+
     }
 
   rule foursquare_checkin {
@@ -35,8 +41,15 @@ ruleset foursquare {
       createdAt = response.decode().pick("$.createdAt").as("str");
       lat = response.decode().pick("$.venue.location.lat").as("num");
       long = response.decode().pick("$.venue.location.lng").as("num");
+      d = {
+        "lat":lat,
+        "long":long,
+        "venue":venue
+      };
     } 
-    send_directive(venue) with checkin = venue;
+    {
+      send_directive(venue) with checkin = venue;
+    }
     fired {
       set ent:venue venue;
       set ent:city city;
@@ -45,9 +58,15 @@ ruleset foursquare {
       set ent:test venue;
       set ent:lat lat;
       set ent:long long;
-
+      raise explicit event notify_subscribers for b505194x3 with data = d;
       raise pds event new_location_data for b505169x5 with key = "fs_checkin" and value = {"created" : createdAt, "city": city, "venue" : venue, "shout": shout, "lat": lat, "long":long};
     }
+  }
+
+  rule notify {
+    select when explicit notify_subscribers
+      foreach subscribers setting (subscriber)
+        event:send(subscriber,"location","notification") with attrs = event:attr("data");
   }
 
   rule display_checkin {
