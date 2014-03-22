@@ -65,7 +65,7 @@ ruleset foursquare {
 
   rule notify {
     select when explicit notify_subscribers
-      foreach subscribers setting (subscriber)
+      foreach subscriptionMap setting (subscriber)
       {
         send_directive("Sending" + subscriber.as("str")) with checkin = subscriber;
         event:send(subscriber,"location","notification") with attrs = event:attr("data");
