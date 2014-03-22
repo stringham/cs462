@@ -1,3 +1,5 @@
+// https://cs.kobj.net/sky/event/193A6FF8-A564-11E3-8CD5-EEEDE71C24E1/1/foursquare/checkin?_rids=b505169x4.prod&checkin=%7B%22venue%22%3A%7B%22name%22%3A%22test%20venue%22%2C%20%22city%22%3A%22Provo%22%2C%20%22location%22%3A%7B%22lat%22%3A40%2C%20%22lng%22%3A%2060%7D%7D%2C%20%22shout%22%3A%22shouting%22%2C%20%22createdAt%22%3A%22today%22%7D
+
 ruleset foursquare {
   meta {
     name "Foursquare Checkin app"
