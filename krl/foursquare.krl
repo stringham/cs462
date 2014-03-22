@@ -59,7 +59,7 @@ ruleset foursquare {
       set ent:lat lat;
       set ent:long long;
       raise explicit event notify_subscribers for b505169x4 with data = d;
-      raise pds event new_location_data for b505169x5 with key = "fs_checkin" and value = {"created" : createdAt, "city": city, "venue" : venue, "shout": shout, "lat": lat, "long":long};
+      //raise pds event new_location_data for b505169x5 with key = "fs_checkin" and value = {"created" : createdAt, "city": city, "venue" : venue, "shout": shout, "lat": lat, "long":long};
     }
   }
 
