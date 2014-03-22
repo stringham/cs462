@@ -66,7 +66,10 @@ ruleset foursquare {
   rule notify {
     select when explicit notify_subscribers
       foreach subscribers setting (subscriber)
+      {
+        send_directive('sending') with sub = subscriber;
         event:send(subscriber,"location","notification") with attrs = event:attr("data");
+      }
   }
 
   rule display_checkin {
